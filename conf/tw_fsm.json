@@ -1,0 +1,29 @@
+{
+  "callbacks": {
+    "PaymentPayoutFsmEventInvoiceGenerated": "callbackPaymentPayoutFsmEventInvoiceGenerated",
+   "PaymentPayoutFsmEventPayByBankTransferChannel": "callbackPaymentPayoutFsmEventPayByBankTransferChannel",
+    "PaymentPayoutFsmEventPayoutSucceed": "callbackPaymentPayoutFsmEventPayoutSucceed"
+  },
+  "events": {
+    "PaymentPayoutFsmEventInvoiceGenerated": {
+      "from": [
+        "PendingReceiptGeneration",
+        "PendingBillInvoiceGeneration"
+      ],
+      "to": "DuringPostback"
+    },
+    "PaymentPayoutFsmEventPayByBankTransferChannel": {
+      "from": [
+        "PendingL2Pay"
+      ],
+      "to": "PendingBank"
+    },
+    "PaymentPayoutFsmEventPayoutSucceed": {
+      "from": [
+        "PendingBank"
+      ],
+      "to": "Completed"
+    }
+  },
+  "initial_state": "PendingBillInvoiceGeneration"
+}

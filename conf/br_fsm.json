@@ -1,0 +1,29 @@
+{
+  "callbacks": {
+    "PaymentPayoutFsmEventInvoiceGenerated": "callbackPaymentPayoutFsmEventInvoiceGenerated",
+    "PaymentPayoutFsmEventPayByShopeePayChannel": "callbackPaymentPayoutFsmEventPayByShopeePayChannel",
+    "PaymentPayoutFsmEventPayoutSucceed": "callbackPaymentPayoutFsmEventPayoutSucceed"
+  },
+  "events": {
+    "PaymentPayoutFsmEventInvoiceGenerated": {
+      "from": [
+        "PendingReceiptGeneration",
+        "PendingBillInvoiceGeneration"
+      ],
+      "to": "DuringPostback"
+    },
+    "PaymentPayoutFsmEventPayByShopeePayChannel": {
+      "from": [
+        "PendingL2Pay"
+      ],
+      "to": "PendingShopeePay"
+    },
+    "PaymentPayoutFsmEventPayoutSucceed": {
+      "from": [
+        "PendingShopeePay"
+      ],
+      "to": "Completed"
+    }
+  },
+  "initial_state": "PendingBillInvoiceGeneration"
+}
