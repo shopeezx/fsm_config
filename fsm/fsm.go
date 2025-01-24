@@ -1,9 +1,3 @@
-/**
- * @Copyright: 2025 Shopee
- * @Author: xiang.zhong
- * @Email: xiang.zhong@shopee.com
- * @Date: 2025/01/24 15:42
- */
 package fsm
 
 import (

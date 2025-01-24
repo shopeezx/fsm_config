@@ -1,9 +1,3 @@
-/**
- * @Copyright: 2025 Shopee
- * @Author: xiang.zhong
- * @Email: xiang.zhong@shopee.com
- * @Date: 2025/01/24 15:42
- */
 package fsm
 
 import (
@@ -17,8 +11,7 @@ type PayoutFsmTw struct {
 }
 
 func NewFsmTw(ctx context.Context, configFileUrl string, model PayoutModel) *PayoutFsmTw {
-	logger := (&zap.Logger{})
-	// .With(zap.Any("model", model))
+	logger := &zap.Logger{}
 	config, err := LoadConfigFromFile(configFileUrl)
 	if err != nil {
 		panic(err)
