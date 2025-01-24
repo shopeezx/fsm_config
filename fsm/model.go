@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"github.com/looplab/fsm"
-	"go.uber.org/zap"
 )
 
 type Event struct {
@@ -22,7 +21,6 @@ type PaymentFsm struct {
 	FSM     *fsm.FSM        // 状态机实例
 	Config  *FsmConfig      // 状态机配置
 	Context context.Context // 上下文，用于回调函数
-	Logger  *zap.Logger     // 日志，用于调试或记录
 }
 
 type PayoutModel struct {
