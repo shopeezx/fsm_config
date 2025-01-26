@@ -4,7 +4,6 @@ go 1.20
 
 require (
 	github.com/looplab/fsm v0.2.0
-	go.uber.org/zap v1.19.1
 )
 
 require (
