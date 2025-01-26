@@ -17,8 +17,6 @@ func NewFsmBr(ctx context.Context, configFileUrl string, model PayoutModel) *Pay
 	if err != nil {
 		panic(err)
 	}
-
-	fsm.FSM.SetState(model.PayoutStatus.String())
 	return &PayoutFsmBr{
 		PaymentFsm: fsm,
 	}
