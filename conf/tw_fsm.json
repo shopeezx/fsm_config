@@ -1,13 +1,12 @@
 {
   "callbacks": {
     "PaymentPayoutFsmEventInvoiceGenerated": "callbackPaymentPayoutFsmEventInvoiceGenerated",
-   "PaymentPayoutFsmEventPayByBankTransferChannel": "callbackPaymentPayoutFsmEventPayByBankTransferChannel",
+    "PaymentPayoutFsmEventPayByBankTransferChannel": "callbackPaymentPayoutFsmEventPayByBankTransferChannel",
     "PaymentPayoutFsmEventPayoutSucceed": "callbackPaymentPayoutFsmEventPayoutSucceed"
   },
   "events": {
     "PaymentPayoutFsmEventInvoiceGenerated": {
       "from": [
-        "PendingReceiptGeneration",
         "PendingBillInvoiceGeneration"
       ],
       "to": "DuringPostback"

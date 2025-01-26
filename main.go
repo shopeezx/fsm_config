@@ -22,24 +22,28 @@ func main() {
 	if err := brFsm.FSM.Event(fsm.PaymentPayoutFsmEventInvoiceGenerated); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
+	fmt.Printf("fms current state is %s\n", brFsm.FSM.Current())
 
 	payoutModel.PayoutStatus = fsm.PaymentPayoutFsmStatusPendingL2Pay
 	brFsm = fsm.NewFsmBr(context.Background(), "./conf/br_fsm.json", payoutModel)
 	if err := brFsm.FSM.Event(fsm.PaymentPayoutFsmEventPayByShopeePayChannel); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
+	fmt.Printf("fms current state is %s\n", brFsm.FSM.Current())
 
 	payoutModel.PayoutStatus = fsm.PaymentPayoutFsmStatusPendingInvoiceOrReceiptUpload
 	brFsm = fsm.NewFsmBr(context.Background(), "./conf/br_fsm.json", payoutModel)
 	if err := brFsm.FSM.Event(fsm.PaymentPayoutFsmEventPayByShopeePayChannel); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
+	fmt.Printf("fms current state is %s\n", brFsm.FSM.Current())
 
 	payoutModel.PayoutStatus = fsm.PaymentPayoutFsmStatusPendingShopeePay
 	brFsm = fsm.NewFsmBr(context.Background(), "./conf/br_fsm.json", payoutModel)
 	if err := brFsm.FSM.Event(fsm.PaymentPayoutFsmEventPayoutSucceed); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
+	fmt.Printf("fms current state is %s\n", brFsm.FSM.Current())
 
 	// tw fsm
 	fmt.Printf("------------Test Br FSM------------ \n")
@@ -48,22 +52,26 @@ func main() {
 	if err := twFsm.FSM.Event(fsm.PaymentPayoutFsmEventInvoiceGenerated); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
+	fmt.Printf("fms current state is %s\n", twFsm.FSM.Current())
 
 	payoutModel.PayoutStatus = fsm.PaymentPayoutFsmStatusPendingL2Pay
 	twFsm = fsm.NewFsmTw(context.Background(), "./conf/tw_fsm.json", payoutModel)
 	if err := twFsm.FSM.Event(fsm.PaymentPayoutFsmEventPayByBankTransferChannel); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
+	fmt.Printf("fms current state is %s\n", twFsm.FSM.Current())
 
 	payoutModel.PayoutStatus = fsm.PaymentPayoutFsmStatusPendingL2Pay
 	twFsm = fsm.NewFsmTw(context.Background(), "./conf/tw_fsm.json", payoutModel)
 	if err := twFsm.FSM.Event(fsm.PaymentPayoutFsmEventPayByShopeePayChannel); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
+	fmt.Printf("fms current state is %s\n", twFsm.FSM.Current())
 
 	payoutModel.PayoutStatus = fsm.PaymentPayoutFsmStatusPendingBank
 	twFsm = fsm.NewFsmTw(context.Background(), "./conf/tw_fsm.json", payoutModel)
 	if err := twFsm.FSM.Event(fsm.PaymentPayoutFsmEventPayoutSucceed); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
+	fmt.Printf("fms current state is %s\n", twFsm.FSM.Current())
 }
