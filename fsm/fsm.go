@@ -154,3 +154,16 @@ func getCallbackByName(eventCallback string) fsm.Callback {
 	fmt.Printf("Callback not found, eventCallback:%s\n", eventCallback)
 	return nil
 }
+
+type PayoutOperationHandler interface {
+	SysCreateInvoice(*PayoutModel) error
+	Pay(*PayoutModel) error
+	PayComplete(*PayoutModel) error
+}
+
+var payoutHandler PayoutOperationHandler
+
+var PaymentPayoutHandlerRegionMap = map[string]PayoutOperationHandler{
+	"br": &PayoutOperationHandlerBr{},
+	"tw": &PayoutOperationHandlerTw{},
+}
