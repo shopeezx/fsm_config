@@ -2,8 +2,6 @@ package fsm
 
 import (
 	"context"
-
-	"go.uber.org/zap"
 )
 
 type PayoutFsmBr struct {
@@ -11,12 +9,11 @@ type PayoutFsmBr struct {
 }
 
 func NewFsmBr(ctx context.Context, configFileUrl string, model PayoutModel) *PayoutFsmBr {
-	logger := &zap.Logger{}
 	config, err := LoadConfigFromFile(configFileUrl)
 	if err != nil {
 		panic(err)
 	}
-	fsm, err := NewFsm(ctx, config, logger)
+	fsm, err := NewFsm(ctx, config)
 	if err != nil {
 		panic(err)
 	}
