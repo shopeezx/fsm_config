@@ -1,6 +1,6 @@
 module fsm_config
 
-go 1.22.8
+go 1.22
 
 require (
 	github.com/looplab/fsm v0.2.0
